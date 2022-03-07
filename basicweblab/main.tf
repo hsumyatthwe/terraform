@@ -7,19 +7,20 @@ resource "aws_instance" "web" {
     instance_type = "t3.micro"
     vpc_security_group_ids = [aws_security_group.web.id]
     user_data = <<EOF 
-    #!/bin/bash
-    yum -y update &&
-    yum -y install httpd
-    MYIP=`curl http://169.254.169.254/lastest/meta-data/local-ipv4`
-    echo "<h2>Webserver with PrivateIP: $MYIP</h2><br>Build by Terraform" > /var/www.html/index.html
-    service httpd start
-    chkconfig httpd on
+#!/bin/bash
+yum -y update
+yum -y install httpd
+MYIP=`curl http://169.254.169.254/lastest/meta-data/local-ipv4`
+echo "<h2>Webserver with PrivateIP: $MYIP</h2><br>Build by Terraform" > /var/www.html/index.html
+service httpd start
+chkconfig httpd on
 EOF
     tags = {
         Name = "Webserver Build by Terraform"
         Owner = "Hsu"   
     }
 }
+
 resource "aws_security_group" "web" {
     name = "Webserver-ORG"
     description = "Security Group for my webserver"
