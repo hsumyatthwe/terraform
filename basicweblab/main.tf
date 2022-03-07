@@ -3,7 +3,7 @@ provider "aws" {
     region = "us-west-2"
 }
 resource "aws_instance" "web" {
-    ami = "ami-0b9f27b05e1de14e9" // Amaxon Linux2
+    ami = "ami-0b9f27b05e1de14e9" // Amazon Linux2
     instance_type = "t3.micro"
     vpc_security_group_ids = [aws_security_group.web.id]
 
@@ -23,7 +23,7 @@ EOF
 }
 
 resource "aws_security_group" "web" {
-    name = "Webserver-ORG"
+    name = "Webserver-SG"
     description = "Security Group for my webserver"
 
     ingress {
