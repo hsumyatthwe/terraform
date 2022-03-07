@@ -10,7 +10,7 @@ resource "aws_instance" "web" {
 #!/bin/bash
 yum -y update
 yum -y install httpd
-MYIP=`curl http://169.254.169.254/lastest/meta-data/local-ipv4`
+MYIP="curl http://169.254.169.254/lastest/meta-data/local-ipv4"
 echo "<h2>Webserver with PrivateIP: $MYIP</h2><br>Build by Terraform" > /var/www.html/index.html
 service httpd start
 chkconfig httpd on
