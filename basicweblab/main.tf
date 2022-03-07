@@ -6,7 +6,7 @@ resource "aws_instance" "web" {
     ami = "ami-0b9f27b05e1de14e9" // Amaxon Linux2
     instance_type = "t3.micro"
     vpc_security_group_ids = [aws_security_group.web.id]
-    user_data = << EOF 
+    user_data = <<EOF 
 #!/bin/bash
 yum -y update
 yum -y install httpd
